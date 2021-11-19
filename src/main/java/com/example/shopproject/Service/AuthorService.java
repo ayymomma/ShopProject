@@ -16,31 +16,40 @@ public class AuthorService {
     @Autowired
     private AuthorRepository authorRepository;
 
-    public AuthorDTO GetAuthorByID(Integer ID){
-        var author = authorRepository.findById(ID);
-        return author.map(AuthorMapper::AuthortoAuthorDTO).orElse(null);
+    public AuthorDTO GetAuthorByID(Integer id) {
+        var author = authorRepository.findById(id);
+        return author.map(AuthorMapper::convertToAuthorDTO).orElse(null);
     }
 
-    public void PostAuthor(PostAuthorDTO postAuthorDTO){
-        authorRepository.save(AuthorMapper.PostAuthorDTOtoAuthor(postAuthorDTO));
+    public void PostAuthor(PostAuthorDTO postAuthorDTO) {
+        authorRepository.save(AuthorMapper.convertToAuthor(postAuthorDTO));
     }
-    public void DeleteAuthor(Integer id)
-    {
+
+    public void DeleteAuthor(Integer id) {
         authorRepository.deleteById(id);
     }
-    public List<AuthorDTO> GetAllAuthors(){
+
+    public List<AuthorDTO> GetAllAuthors() {
         List<AuthorDTO> authorDTOS = new ArrayList<>();
-        authorRepository.findAll().forEach(author -> {authorDTOS.add(AuthorMapper.AuthortoAuthorDTO(author));});
+        authorRepository.findAll().forEach(author -> {
+            authorDTOS.add(AuthorMapper.convertToAuthorDTO(author));
+        });
         return authorDTOS;
     }
-    public List<AuthorDTO> GetAuthorByExactName(String NAME){
+
+    public List<AuthorDTO> GetAuthorByExactLastName(String lastName) {
         List<AuthorDTO> authorDTOS = new ArrayList<>();
-        authorRepository.findAllByNUME(NAME).forEach(author -> {authorDTOS.add(AuthorMapper.AuthortoAuthorDTO(author));});
+        authorRepository.findAllByLastName(lastName).forEach(author -> {
+            authorDTOS.add(AuthorMapper.convertToAuthorDTO(author));
+        });
         return authorDTOS;
     }
-    public List<AuthorDTO> GetAuthorByApproximativeName(String NAME){
+
+    public List<AuthorDTO> GetAuthorByApproximativeLastName(String lastName) {
         List<AuthorDTO> authorDTOS = new ArrayList<>();
-        authorRepository.findAllByNUMEIsContaining(NAME).forEach(author -> {authorDTOS.add(AuthorMapper.AuthortoAuthorDTO(author));});
+        authorRepository.findAllByLastNameIsContaining(lastName).forEach(author -> {
+            authorDTOS.add(AuthorMapper.convertToAuthorDTO(author));
+        });
         return authorDTOS;
     }
 }

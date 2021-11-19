@@ -8,6 +8,6 @@ import lombok.Setter;
 @Setter
 @Getter
 public class PostAuthorDTO implements DTO {
-    private String PRENUME;
-    private String NUME;
+    private String firstName;
+    private String lastName;
 }

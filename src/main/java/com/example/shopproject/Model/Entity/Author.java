@@ -14,23 +14,27 @@ import java.io.Serializable;
 public class Author implements Serializable {
 
     @Id
-    @GeneratedValue
-    private Integer ID;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Integer id;
 
-    private String PRENUME;
-    private String NUME;
+    @Column(name = "first_name")
+    private String firstName;
+
+    @Column(name = "last_name")
+    private String lastName;
 
     @Override
     public String toString() {
         return "Author{" +
-                "ID=" + ID +
-                ", prenume='" + PRENUME + '\'' +
-                ", nume='" + NUME + '\'' +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
                 '}';
     }
 
-    public Integer getID() {
-        return ID;
+    public Integer getId() {
+        return id;
     }
 
 }

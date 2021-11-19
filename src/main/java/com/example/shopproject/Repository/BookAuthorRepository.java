@@ -8,8 +8,11 @@ import java.util.Optional;
 
 
 public interface BookAuthorRepository extends CrudRepository<BookAuthor, Integer> {
-    List<BookAuthor> findAllByIDAUTHOR(Integer idauthor);
-    List<BookAuthor> findAllByISBN(String isbn);
-    void deleteByISBN(String isbn);
-    void deleteByIDAUTHOR(Integer idauthor);
+    List<BookAuthor> findAllByIdAuthor(Integer idAuthor);
+
+    List<BookAuthor> findAllByIsbn(String isbn);
+
+    void deleteByIsbn(String isbn);
+
+    void deleteByIdAuthor(Integer idAuthor);
 }

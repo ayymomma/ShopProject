@@ -9,8 +9,8 @@ import lombok.Setter;
 @Data
 public class AuthorDTO implements DTO {
 
-    private Integer ID;
-    private String PRENUME;
-    private String NUME;
+    private Integer id;
+    private String firstName;
+    private String lastName;
 
 }

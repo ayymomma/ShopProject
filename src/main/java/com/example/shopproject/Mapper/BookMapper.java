@@ -5,44 +5,48 @@ import com.example.shopproject.Model.DTO.Book.PostBookDTO;
 import com.example.shopproject.Model.Entity.Book;
 
 public class BookMapper {
-    public static BookDTO BooktoBookDTO(Book book){
+    public static BookDTO convertToBookDTO(Book book) {
         BookDTO bookDTO = new BookDTO();
-        bookDTO.setAN(book.getAN());
-        bookDTO.setEDITURA(book.getEDITURA());
-        bookDTO.setGEN(book.getGEN());
-        bookDTO.setISBN(book.getISBN());
-        bookDTO.setTITLU(book.getTITLU());
+        bookDTO.setYear(book.getYear());
+        bookDTO.setPublisher(book.getPublisher());
+        bookDTO.setGenre(book.getGenre());
+        bookDTO.setIsbn(book.getIsbn());
+        bookDTO.setTitle(book.getTitle());
         return bookDTO;
     }
-    public static Book BookDTOtoBook(BookDTO bookDTO){
+
+    public static Book convertToBook(BookDTO bookDTO) {
         Book book = new Book();
-        book.setAN(bookDTO.getAN());
-        book.setEDITURA(bookDTO.getEDITURA());
-        book.setGEN(bookDTO.getGEN());
-        book.setISBN(bookDTO.getISBN());
-        book.setTITLU(bookDTO.getTITLU());
+        book.setYear(bookDTO.getYear());
+        book.setPublisher(bookDTO.getPublisher());
+        book.setGenre(bookDTO.getGenre());
+        book.setIsbn(bookDTO.getIsbn());
+        book.setTitle(bookDTO.getTitle());
         return book;
     }
-    public static PartialBookDTO BooktoPartialBookDTO(Book book){
+
+    public static PartialBookDTO convertToPartialBookDTO(Book book) {
         PartialBookDTO partialBookDTO = new PartialBookDTO();
-        partialBookDTO.setIsbn(book.getISBN());
-        partialBookDTO.setTitlu(book.getTITLU());
+        partialBookDTO.setIsbn(book.getIsbn());
+        partialBookDTO.setTitle(book.getTitle());
         return partialBookDTO;
     }
-    public static PostBookDTO BooktoPostBookDTO(Book book){
+
+    public static PostBookDTO convertToPostBookDTO(Book book) {
         PostBookDTO postBookDTO = new PostBookDTO();
-        postBookDTO.setAN(book.getAN());
-        postBookDTO.setEDITURA(book.getEDITURA());
-        postBookDTO.setGEN(book.getGEN());
-        postBookDTO.setTITLU(book.getTITLU());
+        postBookDTO.setYear(book.getYear());
+        postBookDTO.setPublisher(book.getPublisher());
+        postBookDTO.setGenre(book.getGenre());
+        postBookDTO.setTitle(book.getTitle());
         return postBookDTO;
     }
-    public static Book PostBookDTOtoBook(PostBookDTO postBookDTO){
+
+    public static Book convertToBook(PostBookDTO postBookDTO) {
         Book book = new Book();
-        book.setAN(postBookDTO.getAN());
-        book.setEDITURA(postBookDTO.getEDITURA());
-        book.setGEN(postBookDTO.getGEN());
-        book.setTITLU(postBookDTO.getTITLU());
+        book.setYear(postBookDTO.getYear());
+        book.setPublisher(postBookDTO.getPublisher());
+        book.setGenre(postBookDTO.getGenre());
+        book.setTitle(postBookDTO.getTitle());
         return book;
     }
 }

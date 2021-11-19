@@ -25,65 +25,55 @@ public class BookController {
     BookAuthorService bookAuthorService;
 
 
-    @GetMapping("/{ISBN}")
-    public DTO GetBookByISBN(@PathVariable String ISBN, @RequestParam(required = false, defaultValue = "true") String verbose){
-        if(Objects.equals(verbose, "true"))
-            return bookService.GetBookByISBN(ISBN);
-        else{
-            System.out.println(bookService.GetPartialBookByISBN(ISBN));
-            return bookService.GetPartialBookByISBN(ISBN);
+    @GetMapping("/{isbn}")
+    public DTO GetBookByISBN(@PathVariable String isbn, @RequestParam(required = false, defaultValue = "true") String verbose) {
+        if (Objects.equals(verbose, "true"))
+            return bookService.GetBookByIsbn(isbn);
+        else {
+            return bookService.GetPartialBookByIsbn(isbn);
         }
     }
 
-
     @PostMapping
-    public void PostBook(@RequestBody PostBookDTO postBookDTO){
+    public void PostBook(@RequestBody PostBookDTO postBookDTO) {
         bookService.PostBook(postBookDTO);
     }
 
     @DeleteMapping
-    public void DeleteBook(@RequestParam String ISBN){
+    public void DeleteBook(@RequestParam String ISBN) {
         bookService.DeleteBook(ISBN);
     }
 
     @GetMapping("/all")
-    public List<BookDTO> GetAllBooks(){
+    public List<BookDTO> GetAllBooks() {
         return bookService.GetAllBooks();
     }
 
-    @GetMapping("/{ISBN}/authors")
-    public List<AuthorDTO> GetIDAuthorsForBook(@PathVariable String ISBN){
-        return bookAuthorService.GetIDAuthorsForBook(ISBN);
+    @GetMapping("/{isbn}/authors")
+    public List<AuthorDTO> GetIDAuthorsForBook(@PathVariable String isbn) {
+        return bookAuthorService.GetIdAuthorsForBook(isbn);
     }
 
-//    @GetMapping("/{ID}/authors")
-//    public List<BookAuthor> GetISBNsForAuthor(@RequestParam Integer IDAUTHOR){
-//        return bookAuthorService.GetISBNsForAuthor(IDAUTHOR);
-//    }
-
-    @PostMapping("/{IDAUTHOR}/authors/{ISBN}")
-    public void PostBookAuthor(@PathVariable Integer IDAUTHOR, @PathVariable String ISBN){
-        bookAuthorService.PostBookAuthor(new BookAuthor(ISBN,IDAUTHOR));
+    @PostMapping("/{idAuthor}/authors/{isbn}")
+    public void PostBookAuthor(@PathVariable Integer idAuthor, @PathVariable String isbn) {
+        bookAuthorService.PostBookAuthor(new BookAuthor(isbn, idAuthor));
     }
 
     @GetMapping
-    public List<BookDTO> GetBooksPerPage(@RequestParam Integer page, @RequestParam(required = false, defaultValue = "10") Integer itemsPerPage){
+    public List<BookDTO> GetBooksPerPage(@RequestParam Integer page, @RequestParam(required = false, defaultValue = "10") Integer itemsPerPage) {
         return bookService.GetBooksPerPage(page, itemsPerPage);
     }
 
     @GetMapping("/find")
-    public List<BookDTO> GetBooksByGenreYear(@RequestParam(required = false, defaultValue = "") String GENRE, @RequestParam(required = false, defaultValue = "0") Integer YEAR){
-        if(!Objects.equals(GENRE, "") && YEAR != 0){
+    public List<BookDTO> GetBooksByGenreYear(@RequestParam(required = false, defaultValue = "") String GENRE, @RequestParam(required = false, defaultValue = "0") Integer YEAR) {
+        if (!Objects.equals(GENRE, "") && YEAR != 0) {
             return bookService.GetBooksByGenreAndYear(GENRE, YEAR);
-        }
-        else if(!Objects.equals(GENRE, "")){
+        } else if (!Objects.equals(GENRE, "")) {
             return bookService.GetBooksByGenre(GENRE);
-        }
-        else if(YEAR != 0){
+        } else if (YEAR != 0) {
             return bookService.GetBooksByYear(YEAR);
-        }
-        else
-            return new ArrayList<BookDTO>();
+        } else
+            return new ArrayList<>();
     }
 
 }

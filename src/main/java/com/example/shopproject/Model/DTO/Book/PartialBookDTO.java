@@ -7,6 +7,6 @@ import lombok.Data;
 public class PartialBookDTO implements DTO {
 
     public String isbn;
-    public String titlu;
+    public String title;
 
 }

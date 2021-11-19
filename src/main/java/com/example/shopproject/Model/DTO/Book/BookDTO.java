@@ -5,11 +5,20 @@ import lombok.Data;
 
 @Data
 public class BookDTO implements DTO {
+    private String isbn;
+    private String title;
+    private String publisher;
+    private Integer year;
+    private String genre;
 
-    private String ISBN;
-    private String TITLU;
-    private String EDITURA;
-    private Integer AN;
-    private String GEN;
-
+    @Override
+    public String toString() {
+        return "BookDTO{" +
+                "isbn='" + isbn + '\'' +
+                ", title='" + title + '\'' +
+                ", publisher='" + publisher + '\'' +
+                ", year=" + year +
+                ", genre='" + genre + '\'' +
+                '}';
+    }
 }

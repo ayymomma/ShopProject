@@ -7,6 +7,7 @@ import java.util.List;
 
 
 public interface AuthorRepository extends CrudRepository<Author, Integer> {
-    List<Author> findAllByNUME(String NUME);
-    List<Author> findAllByNUMEIsContaining(String NUME);
+    List<Author> findAllByLastName(String lastName);
+
+    List<Author> findAllByLastNameIsContaining(String lastName);
 }

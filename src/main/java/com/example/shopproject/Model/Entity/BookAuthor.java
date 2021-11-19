@@ -7,29 +7,33 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name = "bookauthor")
+@Table(name = "book_author")
 public class BookAuthor {
 
     @Id
-    @GeneratedValue
-    private Integer ID;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Integer id;
 
-    private String ISBN;
-    private Integer IDAUTHOR;
+    @Column(name = "isbn")
+    private String isbn;
+
+    @Column(name = "id_author")
+    private Integer idAuthor;
 
     public BookAuthor() {
 
     }
     public BookAuthor(String ISBN, Integer IDAUTHOR) {
-        this.ISBN = ISBN;
-        this.IDAUTHOR = IDAUTHOR;
+        this.isbn = ISBN;
+        this.idAuthor = IDAUTHOR;
     }
 
-    public String getISBN() {
-        return ISBN;
+    public String getIsbn() {
+        return isbn;
     }
 
-    public Integer getIDAUTHOR() {
-        return IDAUTHOR;
+    public Integer getIdAuthor() {
+        return idAuthor;
     }
 }

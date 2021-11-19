@@ -22,35 +22,37 @@ public class AuthorController {
 
     @GetMapping
     public @ResponseBody
-    AuthorDTO GetAuthorByID(@RequestParam Integer ID){
-        return authorService.GetAuthorByID(ID);
+    AuthorDTO GetAuthorByID(@RequestParam Integer id) {
+        return authorService.GetAuthorByID(id);
     }
 
     @PostMapping
-    public void PostAuthor(@RequestBody PostAuthorDTO postAuthorDTO){
+    public void PostAuthor(@RequestBody PostAuthorDTO postAuthorDTO) {
         authorService.PostAuthor(postAuthorDTO);
     }
 
     @DeleteMapping
-    public void DeleteAuthor(@RequestParam Integer ID){
-        authorService.DeleteAuthor(ID);
+    public void DeleteAuthor(@RequestParam Integer id) {
+        authorService.DeleteAuthor(id);
     }
 
     @GetMapping("/all")
-    public List<AuthorDTO> GetAllAuthors(){
+    public List<AuthorDTO> GetAllAuthors() {
         return authorService.GetAllAuthors();
     }
 
-    @GetMapping("/{IDAUTHOR}/books")
-    public List<BookDTO> GetAllBooksForAuthor(@PathVariable Integer IDAUTHOR){
-        return bookAuthorService.GetAllBooksForAuthor(IDAUTHOR);
+    @GetMapping("/{idAuthor}/books")
+    public List<BookDTO> GetAllBooksForAuthor(@PathVariable Integer idAuthor) {
+        return bookAuthorService.GetAllBooksForAuthor(idAuthor);
     }
 
     @GetMapping("/find")
-    public List<AuthorDTO> GetAllAuthorsByName(@RequestParam String NAME, @RequestParam(required = false, defaultValue = "") String MATCH){
-        if(Objects.equals(MATCH, "exact"))
-            return authorService.GetAuthorByExactName(NAME);
+    public List<AuthorDTO> GetAllAuthorsByName(
+            @RequestParam String lastName,
+            @RequestParam(required = false, defaultValue = "") String match) {
+        if (Objects.equals(match, "exact"))
+            return authorService.GetAuthorByExactLastName(lastName);
         else
-            return authorService.GetAuthorByApproximativeName(NAME);
+            return authorService.GetAuthorByApproximativeLastName(lastName);
     }
 }

@@ -24,39 +24,41 @@ public class BookAuthorService {
     @Autowired
     private BookRepository bookRepository;
 
-    public List<AuthorDTO> GetIDAuthorsForBook(String ISBN){
-        List<BookAuthor> bookAuthorsList = bookAuthorRepository.findAllByISBN(ISBN);
+    public List<AuthorDTO> GetIdAuthorsForBook(String isbn) {
+        List<BookAuthor> bookAuthorsList = bookAuthorRepository.findAllByIsbn(isbn);
         List<AuthorDTO> authorDTOList = new ArrayList<>();
 
-        for (BookAuthor bookAuthor: bookAuthorsList) {
-            var author = authorRepository.findById(bookAuthor.getIDAUTHOR());
-            if(author.isPresent())
-                authorDTOList.add(AuthorMapper.AuthortoAuthorDTO(author.get()));
+        for (BookAuthor bookAuthor : bookAuthorsList) {
+            var author = authorRepository.findById(bookAuthor.getIdAuthor());
+            author.ifPresent(value -> authorDTOList.add(AuthorMapper.convertToAuthorDTO(value)));
         }
         return authorDTOList;
     }
-    public List<BookDTO> GetAllBooksForAuthor(Integer IDAUTHOR){
-        List<BookAuthor> bookAuthorsList = bookAuthorRepository.findAllByIDAUTHOR(IDAUTHOR);
+
+    public List<BookDTO> GetAllBooksForAuthor(Integer idAuthor) {
+        List<BookAuthor> bookAuthorsList = bookAuthorRepository.findAllByIdAuthor(idAuthor);
         List<BookDTO> bookDTOList = new ArrayList<>();
 
-        for (BookAuthor bookAuthor: bookAuthorsList) {
-            var book = bookRepository.findById(bookAuthor.getISBN());
-            book.ifPresent(value -> bookDTOList.add(BookMapper.BooktoBookDTO(value)));
+        for (BookAuthor bookAuthor : bookAuthorsList) {
+            var book = bookRepository.findById(bookAuthor.getIsbn());
+            book.ifPresent(value -> bookDTOList.add(BookMapper.convertToBookDTO(value)));
         }
         return bookDTOList;
     }
 
-    public List<BookAuthor> GetISBNsForAuthor(Integer ID){
-        return bookAuthorRepository.findAllByIDAUTHOR(ID);
+    public List<BookAuthor> GetIsbnsForAuthor(Integer idAuthor) {
+        return bookAuthorRepository.findAllByIdAuthor(idAuthor);
     }
 
-    public void PostBookAuthor(BookAuthor bookAuthor){
+    public void PostBookAuthor(BookAuthor bookAuthor) {
         bookAuthorRepository.save(bookAuthor);
     }
-    public void DeleteByISBN(String ISBN){
-        bookAuthorRepository.deleteByISBN(ISBN);
+
+    public void DeleteByIsbn(String ISBN) {
+        bookAuthorRepository.deleteByIsbn(ISBN);
     }
-    public void DeletebyIDAUTHOR(Integer IDAUTHOR){
-        bookAuthorRepository.deleteByIDAUTHOR(IDAUTHOR);
+
+    public void DeleteByIdAuthor(Integer IDAUTHOR) {
+        bookAuthorRepository.deleteByIdAuthor(IDAUTHOR);
     }
 }

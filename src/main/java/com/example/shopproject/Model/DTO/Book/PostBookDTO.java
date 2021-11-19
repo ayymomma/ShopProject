@@ -5,8 +5,8 @@ import lombok.Data;
 
 @Data
 public class PostBookDTO implements DTO {
-    private String TITLU;
-    private String EDITURA;
-    private Integer AN;
-    private String GEN;
+    private String title;
+    private String publisher;
+    private Integer year;
+    private String genre;
 }

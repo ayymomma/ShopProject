@@ -2,6 +2,7 @@ package com.example.shopproject.Model.Entity;
 
 import lombok.Data;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -13,21 +14,29 @@ import java.util.Set;
 public class Book implements Serializable {
 
     @Id
-    private String ISBN;
+    @Column(name = "isbn")
+    private String isbn;
 
-    private String TITLU;
-    private String EDITURA;
-    private Integer AN;
-    private String GEN;
+    @Column(name = "title")
+    private String title;
+
+    @Column(name = "publisher")
+    private String publisher;
+
+    @Column(name = "year")
+    private Integer year;
+
+    @Column(name = "genre")
+    private String genre;
 
     @Override
     public String toString() {
         return "Book{" +
-                "ISBN='" + ISBN + '\'' +
-                ", TITLU='" + TITLU + '\'' +
-                ", EDITURA='" + EDITURA + '\'' +
-                ", AN=" + AN +
-                ", GEN='" + GEN + '\'' +
+                "isbn='" + isbn + '\'' +
+                ", title='" + title + '\'' +
+                ", publisher='" + publisher + '\'' +
+                ", year=" + year +
+                ", genre='" + genre + '\'' +
                 '}';
     }
 }
