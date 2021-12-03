@@ -9,4 +9,6 @@ public class PostBookDTO implements DTO {
     private String publisher;
     private Integer year;
     private String genre;
+    private Integer stock;
+    private Integer price;
 }

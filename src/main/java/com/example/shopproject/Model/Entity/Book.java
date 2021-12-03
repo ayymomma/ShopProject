@@ -29,6 +29,13 @@ public class Book implements Serializable {
     @Column(name = "genre")
     private String genre;
 
+    @Column(name = "stock")
+    private Integer stock;
+
+    @Column(name = "price")
+    private Integer price;
+
+
     @Override
     public String toString() {
         return "Book{" +
@@ -37,6 +44,8 @@ public class Book implements Serializable {
                 ", publisher='" + publisher + '\'' +
                 ", year=" + year +
                 ", genre='" + genre + '\'' +
+                ", stock=" + stock +
+                ", price=" + price +
                 '}';
     }
 }
