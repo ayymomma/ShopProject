@@ -5,5 +5,5 @@ import lombok.Data;
 @Data
 public class Item {
     String isbn;
-    String title;
+    Integer amount;
 }

@@ -95,4 +95,8 @@ public class BookService {
         return bookDTOS;
     }
 
+    public Integer GetStockByISBN(String isbn){
+        return GetBookByIsbn(isbn).getStock();
+    }
+
 }
